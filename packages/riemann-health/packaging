@@ -1,0 +1,12 @@
+# abort script on any command that exits with a non zero value
+set -e
+
+rsync -a riemann-health/ ${BOSH_INSTALL_TARGET}
+
+# install gems from cache
+(
+  cd ${BOSH_INSTALL_TARGET}
+
+  PATH=/var/vcap/packages/ruby-2.1.6/bin/:$PATH
+  bundle install --local --deployment --without development test
+)

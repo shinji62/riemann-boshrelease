@@ -1,0 +1,42 @@
+#!/bin/bash
+
+set -e -u
+
+source /var/vcap/jobs/riemann-health/helpers/ctl_utils.sh
+
+RUN_DIR=/var/vcap/sys/run/riemann-health
+LOG_DIR=/var/vcap/sys/log/riemann-health
+PIDFILE=$RUN_DIR/riemann-health.pid
+
+export LANG=en_US.UTF-8
+export PATH=/var/vcap/packages/ruby-2.1.6/bin:$PATH
+export BUNDLE_GEMFILE=/var/vcap/packages/riemann-health/Gemfile
+
+case $1 in
+
+  start)
+    pid_guard $PIDFILE "riemann-health"
+
+    mkdir -p $RUN_DIR
+    chown vcap:vcap $RUN_DIR
+
+    mkdir -p $LOG_DIR
+    chown vcap:vcap $LOG_DIR
+
+    bundle exec riemann-health \
+      --host 10.244.26.6 \
+      --port 5555 \
+      --event-host <%= name %>-<%= index %> \
+      >> $LOG_DIR/riemann-health.out.log \
+      2>> $LOG_DIR/riemann-health.err.log
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+    ;;
+
+  *)
+    echo "Usage: riemann-health_ctl {start|stop}"
+    ;;
+
+esac

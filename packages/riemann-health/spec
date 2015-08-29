@@ -1,0 +1,5 @@
+---
+name: riemann-health
+
+files:
+- riemann-health/**/*
