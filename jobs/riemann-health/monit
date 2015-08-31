@@ -1,5 +1,0 @@
-check process riemann-health
-  with pidfile /var/vcap/sys/run/riemann-health/riemann-health.pid
-  start program "/var/vcap/jobs/riemann-health/bin/riemann-health_ctl start"
-  stop program "/var/vcap/jobs/riemann-health/bin/riemann-health_ctl stop"
-  group vcap
