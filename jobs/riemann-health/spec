@@ -6,7 +6,7 @@ templates:
   helpers/ctl_utils.sh: helpers/ctl_utils.sh
 
 packages:
-- ruby-2.1.6
+- ruby-2.1
 - riemann-health
 
 properties: {}
