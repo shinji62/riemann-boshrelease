@@ -8,3 +8,8 @@ templates:
 packages:
   - java
   - riemann
+
+properties:
+  consul.agent.services.riemann:
+    description: "this property auto-registers TSA as a service"
+    default: {}

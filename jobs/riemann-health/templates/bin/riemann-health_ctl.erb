@@ -23,9 +23,16 @@ case $1 in
     mkdir -p $LOG_DIR
     chown vcap:vcap $LOG_DIR
 
-    bundle exec riemann-health \
-      --host 10.244.26.6 \
-      --port 5555 \
+    echo $$ > $PIDFILE
+
+    until nc -w 1 <%= p("riemann.host") %> <%= p("riemann.port") %> </dev/null; do
+      echo "$(date): waiting for riemann server..."
+      sleep 1
+    done
+
+    exec bundle exec riemann-health \
+      --host <%= p("riemann.host") %> \
+      --port <%= p("riemann.port") %> \
       --event-host <%= name %>-<%= index %> \
       >> $LOG_DIR/riemann-health.out.log \
       2>> $LOG_DIR/riemann-health.err.log
