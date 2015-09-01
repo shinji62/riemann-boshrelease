@@ -20,6 +20,10 @@
       ; Index all events immediately.
       index
 
+<% if_p("riemann.datadog.api_key") do |key| %>
+      (datadog {:api-key "<%= key %>"})
+<% end %>
+
       ; Log expired events.
       (expired
         (fn [event] (info "expired" event))))))

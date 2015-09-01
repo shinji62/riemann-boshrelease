@@ -10,6 +10,9 @@ packages:
   - riemann
 
 properties:
+  riemann.datadog.api_key:
+    description: "If configured, metrics will be emitted to DataDog."
+
   consul.agent.services.riemann:
     description: "this property auto-registers TSA as a service"
     default: {}
