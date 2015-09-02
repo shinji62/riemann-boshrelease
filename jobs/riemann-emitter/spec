@@ -23,6 +23,10 @@ properties:
     description: "Tags to attach to all events emitted."
     default: []
 
+  riemann_emitter.attributes:
+    description: "Attributes to attach to all events emitted."
+    default: []
+
   riemann_emitter.rds.instance_name:
     description: "Name of the RDS instance to emit metrics for."
 
