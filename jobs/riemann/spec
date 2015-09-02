@@ -11,7 +11,26 @@ packages:
 
 properties:
   riemann.datadog.api_key:
-    description: "If configured, metrics will be emitted to DataDog."
+    description: "If configured, events will be emitted to DataDog."
+
+  riemann.influxdb.host:
+    description: "If configured, events will be emitted to InfluxDB."
+
+  riemann.influxdb.version:
+    description: "Version of InfluxDB."
+    default: 0.9
+
+  riemann.influxdb.database:
+    description: "Name of the database to write to."
+    default: riemann
+
+  riemann.influxdb.username:
+    description: "Database user to authenticate as."
+    default: ""
+
+  riemann.influxdb.password:
+    description: "Password to authenticate with."
+    default: ""
 
   consul.agent.services.riemann:
     description: "this property auto-registers TSA as a service"
