@@ -1,11 +1,11 @@
 #!/bin/bash
 
+set -e -u
+
 <%
   require "shellwords"
   def esc(x); Shellwords.shellescape(x); end
 %>
-
-set -e -u
 
 source /var/vcap/jobs/riemann-emitter/helpers/ctl_utils.sh
 
@@ -43,6 +43,9 @@ case $1 in
       --access-key <%= esc(p("riemann_emitter.rds.access_key_id", "unspecified")) %> \
       --secret-key <%= esc(p("riemann_emitter.rds.secret_access_key", "unspecified")) %> \
       --region <%= p("riemann_emitter.rds.region", "unspecified") %> \
+<% p("riemann_emitter.tags").each do |tag| %> \
+      --tag <%= esc(tag) %> \
+<% end %> \
       >> $LOG_DIR/riemann-rds.out.log \
       2>> $LOG_DIR/riemann-rds.err.log
     ;;

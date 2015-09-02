@@ -2,6 +2,11 @@
 
 set -e -u
 
+<%
+  require "shellwords"
+  def esc(x); Shellwords.shellescape(x); end
+%>
+
 source /var/vcap/jobs/riemann-emitter/helpers/ctl_utils.sh
 
 RUN_DIR=/var/vcap/sys/run/riemann-emitter
@@ -34,9 +39,11 @@ case $1 in
       --host <%= p("riemann_emitter.host") %> \
       --port <%= p("riemann_emitter.port") %> \
       --event-host <%= name %>-<%= index %> \
-      --tag job:<%= name %> \
-      --tag index:<%= index %> \
-      --tag deployment:<%= spec.deployment %> \
+      --tag bosh-job:<%= name %> \
+      --tag bosh-deployment:<%= spec.deployment %> \
+<% p("riemann_emitter.tags").each do |tag| %> \
+      --tag <%= esc(tag) %> \
+<% end %> \
       >> $LOG_DIR/riemann-health.out.log \
       2>> $LOG_DIR/riemann-health.err.log
     ;;

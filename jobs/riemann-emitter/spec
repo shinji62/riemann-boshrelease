@@ -19,6 +19,10 @@ properties:
     description: "Port of the Riemann server to connect to."
     default: 5555
 
+  riemann_emitter.tags:
+    description: "Tags to attach to all events emitted."
+    default: []
+
   riemann_emitter.rds.instance_name:
     description: "Name of the RDS instance to emit metrics for."
 
