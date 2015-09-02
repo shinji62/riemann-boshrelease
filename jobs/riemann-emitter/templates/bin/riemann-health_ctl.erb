@@ -34,6 +34,9 @@ case $1 in
       --host <%= p("riemann_emitter.host") %> \
       --port <%= p("riemann_emitter.port") %> \
       --event-host <%= name %>-<%= index %> \
+      --tag job:<%= name %> \
+      --tag index:<%= index %> \
+      --tag deployment:<%= spec.deployment %> \
       >> $LOG_DIR/riemann-health.out.log \
       2>> $LOG_DIR/riemann-health.err.log
     ;;
