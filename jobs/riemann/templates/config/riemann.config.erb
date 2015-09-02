@@ -38,11 +38,16 @@
 <% end %>
 
 <% if_p("riemann.influxdb.host") do |host| %>
-      (influxdb {:host "<%= host %>"
-        :version :<%= p("riemann.influxdb.version") %>
-        :db "<%= p("riemann.influxdb.database") %>"
-        :username "<%= p("riemann.influxdb.username") %>"
-        :password "<%= p("riemann.influxdb.password") %>"})
+      (fn [event]
+        (let [tag-fields (conj (set (remove special-fields (keys event))) :host)
+              influx-with-tags
+                (influxdb {:host "<%= host %>"
+                           :version :<%= p("riemann.influxdb.version") %>
+                           :db "<%= p("riemann.influxdb.database") %>"
+                           :username "<%= p("riemann.influxdb.username") %>"
+                           :password "<%= p("riemann.influxdb.password") %>"
+                           :tag-fields tag-fields})]
+          (influx-with-tags event)))
 <% end %>
 
       ; Log expired events.
