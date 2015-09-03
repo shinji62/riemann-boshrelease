@@ -4,6 +4,12 @@ check process riemann-health
   stop program "/var/vcap/jobs/riemann-emitter/bin/riemann-health_ctl stop"
   group vcap
 
+check process riemann-net
+  with pidfile /var/vcap/sys/run/riemann-emitter/riemann-net.pid
+  start program "/var/vcap/jobs/riemann-emitter/bin/riemann-net_ctl start"
+  stop program "/var/vcap/jobs/riemann-emitter/bin/riemann-net_ctl stop"
+  group vcap
+
 <% if_p("riemann_emitter.rds.instance_name") do %>
 check process riemann-rds
   with pidfile /var/vcap/sys/run/riemann-emitter/riemann-rds.pid

@@ -1,0 +1,63 @@
+#!/bin/bash
+
+set -e -u
+
+<%
+  require "shellwords"
+  def esc(x); Shellwords.shellescape(x); end
+%>
+
+source /var/vcap/jobs/riemann-emitter/helpers/ctl_utils.sh
+
+RUN_DIR=/var/vcap/sys/run/riemann-emitter
+LOG_DIR=/var/vcap/sys/log/riemann-emitter
+PIDFILE=$RUN_DIR/riemann-net.pid
+
+export LANG=en_US.UTF-8
+export PATH=/var/vcap/packages/ruby-2.1/bin:$PATH
+export BUNDLE_GEMFILE=/var/vcap/packages/riemann-tools/Gemfile
+
+case $1 in
+
+  start)
+    pid_guard $PIDFILE "riemann-net"
+
+    mkdir -p $RUN_DIR
+    chown vcap:vcap $RUN_DIR
+
+    mkdir -p $LOG_DIR
+    chown vcap:vcap $LOG_DIR
+
+    echo $$ > $PIDFILE
+
+    until nc -w 1 <%= p("riemann_emitter.host") %> <%= p("riemann_emitter.port") %> </dev/null; do
+      echo "$(date): waiting for riemann server..."
+      sleep 1
+    done
+
+    exec bundle exec riemann-net \
+      --host <%= p("riemann_emitter.host") %> \
+      --port <%= p("riemann_emitter.port") %> \
+      --event-host <%= name %>-<%= index %> \
+      --interfaces eth0 \
+      --attribute bosh-job=<%= name %> \
+      --attribute bosh-deployment=<%= spec.deployment %> \
+<% p("riemann_emitter.attributes").each do |k, v| %> \
+      --attribute <%= esc("#{k}=#{v}") %> \
+<% end %> \
+<% p("riemann_emitter.tags").each do |tag| %> \
+      --tag <%= esc(tag) %> \
+<% end %> \
+      >> $LOG_DIR/riemann-net.out.log \
+      2>> $LOG_DIR/riemann-net.err.log
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+    ;;
+
+  *)
+    echo "Usage: $0 {start|stop}"
+    ;;
+
+esac
