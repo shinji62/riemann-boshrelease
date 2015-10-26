@@ -1,9 +1,25 @@
 ---
 java/openjdk-jre-trusty-1.8.0_45.tar.gz:
-  object_id: d3c946f2-2a74-4c56-9523-d0429dce72de
+  object_id: d3001ab2-4e59-4daf-bc47-0bf3c4b011d7
   sha: 6517390047b05bdb8dd02b3895378112207abda7
   size: 44988428
 riemann/riemann-0.2.10.tar.bz2:
-  object_id: 68c106fc-9d2e-4d06-a2e4-2972c431e620
+  object_id: 82d036ef-1b25-4e6e-a42e-170a40435aca
   sha: 3e80ea180d1d103c6f7e781f0a439405c81ec5c5
   size: 41165533
+ruby-2.1/ruby-2.1.7.tar.gz:
+  object_id: e84f6844-ea7b-4628-945d-f10c7d19688a
+  sha: e2e195a4a58133e3ad33b955c829bb536fa3c075
+  size: 15151458
+ruby-2.1/rubygems-2.4.8.tgz:
+  object_id: 329d95de-e877-4294-96db-839039f3a5f4
+  sha: 0db6b2f1cdd2267fe19f1f875057c2f2ce9f5696
+  size: 447712
+ruby-2.1/bundler-1.9.4.gem:
+  object_id: 2b0dd764-19c0-4103-bbe9-8dca795114e5
+  sha: ea3f17a76a8249049b5589c9b5421af72189babc
+  size: 244224
+ruby-2.1/yaml-0.1.6.tar.gz:
+  object_id: 991d55a4-e8ad-4866-9d79-45a4300fbcea
+  sha: f3d404e11bec3c4efcddfd14c42d46f1aabe0b5d
+  size: 503012
