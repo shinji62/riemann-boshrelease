@@ -29,6 +29,9 @@ case $1 in
 
     echo $$ > $PIDFILE
 
+    # /tmp must have exec to prevent java.lang.UnsatisfiedLinkError when loading netty
+    mount -o remount exec /tmp
+
     exec chpst -u vcap:vcap \
       java -server -XX:+UseConcMarkSweepGC -XX:+UseParNewGC \
       -XX:+CMSParallelRemarkEnabled -XX:+AggressiveOpts \
