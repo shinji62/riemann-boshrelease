@@ -3,10 +3,6 @@ java/openjdk-jre-trusty-1.8.0_45.tar.gz:
   object_id: d3001ab2-4e59-4daf-bc47-0bf3c4b011d7
   sha: 6517390047b05bdb8dd02b3895378112207abda7
   size: 44988428
-riemann/riemann-0.2.10.tar.bz2:
-  object_id: 82d036ef-1b25-4e6e-a42e-170a40435aca
-  sha: 3e80ea180d1d103c6f7e781f0a439405c81ec5c5
-  size: 41165533
 ruby-2.1/ruby-2.1.7.tar.gz:
   object_id: e84f6844-ea7b-4628-945d-f10c7d19688a
   sha: e2e195a4a58133e3ad33b955c829bb536fa3c075
@@ -23,3 +19,7 @@ ruby-2.1/yaml-0.1.6.tar.gz:
   object_id: 991d55a4-e8ad-4866-9d79-45a4300fbcea
   sha: f3d404e11bec3c4efcddfd14c42d46f1aabe0b5d
   size: 503012
+riemann/riemann-0.2.11.tar.bz2:
+  object_id: 2d339610-7e46-447a-b4e8-d7633e3c0e8f
+  sha: 39da04afb78f72a4c100d31a5dc5611b7ae19ed7
+  size: 40503519
