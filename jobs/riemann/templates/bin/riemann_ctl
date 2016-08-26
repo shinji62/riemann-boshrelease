@@ -30,7 +30,9 @@ case $1 in
     echo $$ > $PIDFILE
 
     # /tmp must have exec to prevent java.lang.UnsatisfiedLinkError when loading netty
-    mount -o remount exec /tmp
+    if mountpoint -q /tmp; then
+      mount -o remount exec /tmp
+    fi
 
     exec chpst -u vcap:vcap \
       java -server -XX:+UseConcMarkSweepGC -XX:+UseParNewGC \
