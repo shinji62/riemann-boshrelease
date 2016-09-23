@@ -32,6 +32,9 @@ properties:
     description: "Password to authenticate with."
     default: ""
 
+  riemann.custom_rules:
+    description: "Custom alert rules"
+
   consul.agent.services.riemann:
     description: "this property auto-registers TSA as a service"
     default: {}
