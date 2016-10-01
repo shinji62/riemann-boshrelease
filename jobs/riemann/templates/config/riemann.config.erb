@@ -50,6 +50,8 @@
           (influx-with-tags event)))
 <% end %>
 
+<% p("riemann.custom_rules", []).each |rule| %><%= rule %><% end %>
+
       ; Log expired events.
       (expired
         (fn [event] (info "expired" event))))))
