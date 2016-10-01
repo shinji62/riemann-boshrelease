@@ -14,7 +14,7 @@ Usage
 To use this bosh release, first upload it to your bosh:
 
 ```
-bosh upload release https://github.com/hybris/riemann-boshrelease
+bosh upload release https://github.com/xoebus/riemann-boshrelease
 ```
 
 For [bosh-lite](https://github.com/cloudfoundry/bosh-lite), you can quickly create a deployment manifest & deploy a cluster:
