@@ -1,0 +1,39 @@
+name: riemann
+version: "3"
+commit_hash: 0afa396
+uncommitted_changes: false
+jobs:
+- name: riemann
+  version: 490f5ee327b73154bcded5f51569403f3311324c
+  fingerprint: 490f5ee327b73154bcded5f51569403f3311324c
+  sha1: 01be2d7321aa3e0f738798e19759eb8f445c127f
+- name: riemann-emitter
+  version: f09dab0eef6b3db859550577c5879cdf9a8f335e
+  fingerprint: f09dab0eef6b3db859550577c5879cdf9a8f335e
+  sha1: 538632e166dbd537e4114dbd6831e61cc4c2d2b4
+packages:
+- name: java
+  version: 1dab29614aba5dcec2bc03c1dd7c06ad2e803212
+  fingerprint: 1dab29614aba5dcec2bc03c1dd7c06ad2e803212
+  sha1: 759dc0cdcead1445f6976199a9fcd96a7039ce4c
+  dependencies: []
+- name: riemann
+  version: 4803d66b1e1e4b2fc4d0881e07802802acd9d172
+  fingerprint: 4803d66b1e1e4b2fc4d0881e07802802acd9d172
+  sha1: 7497e0840c4d4a49cf21918e91b374a28729a8f7
+  dependencies: []
+- name: riemann-tools
+  version: 659b0e1a2e5502fdc495b8b432a4af8e070a8c96
+  fingerprint: 659b0e1a2e5502fdc495b8b432a4af8e070a8c96
+  sha1: ac878286a09fb913b78729a8677e430e32731368
+  dependencies:
+  - ruby-2.1
+- name: ruby-2.1
+  version: f5538fe5fab05446c384d39c0f0ff7c18026e790
+  fingerprint: f5538fe5fab05446c384d39c0f0ff7c18026e790
+  sha1: d0acf8817acc7314aeea07bd5334456a7c4a762b
+  dependencies: []
+license:
+  version: 569a481663f95b10cb803539ba61a8c24a881463
+  fingerprint: 569a481663f95b10cb803539ba61a8c24a881463
+  sha1: 37cc26dbab7c97f90fa8a08fcd70b205662fb01b

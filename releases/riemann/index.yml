@@ -1,7 +1,8 @@
----
 builds:
-  e4fca8b5-f524-4bcc-bf34-381f6e94bcf0:
-    version: '1'
   95855980-8dea-448f-a222-d1a58aca36c3:
-    version: '2'
-format-version: '2'
+    version: "2"
+  a090cc9b-b009-45ed-6bd7-8423090cd9bc:
+    version: "3"
+  e4fca8b5-f524-4bcc-bf34-381f6e94bcf0:
+    version: "1"
+format-version: "2"
