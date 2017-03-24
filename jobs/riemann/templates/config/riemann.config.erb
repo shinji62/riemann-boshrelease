@@ -32,6 +32,8 @@
       ; Index all events immediately.
       index
 
+      (println event)
+
 <% if_p("riemann.datadog.api_key") do |key| %>
       (adjust #(assoc % :tags (concat (:tags %) (attribute-tags %)))
         (datadog {:api-key "<%= key %>"}))
@@ -49,6 +51,18 @@
                            :tag-fields tag-fields})]
           (influx-with-tags event)))
 <% end %>
+
+<% if_p("riemann.prometheus.host") do |host| %>
+      (fn [event]
+               (let [send-to-prometheus
+                (prometheus {:host "<%= host %>"
+                            :port "<%= p("riemann.prometheus.port") %>"
+                            :job "<%= p("riemann.prometheus.group_name") %>"
+                            })]
+          (send-to-prometheus event)))
+<% end %>
+
+
 
       <%= p("riemann.custom_rules", []).compact.join("\n") %>
 

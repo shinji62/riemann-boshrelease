@@ -38,3 +38,18 @@ properties:
   consul.agent.services.riemann:
     description: "this property auto-registers TSA as a service"
     default: {}
+
+  riemann.prometheus.host:
+    description: "If configured, events will be emitted to Prometheus."
+
+  riemann.prometheus.port:
+    description: "Port of prometheus listener"
+    default: 9095
+
+  riemann.prometheus.group_name:
+    description: "Group Name to be assigned "
+    default: "riemann"
+
+  riemann.prometheus.separator:
+    description: "Separator to be used for Riemann tags"
+    default: ","

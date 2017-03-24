@@ -2,4 +2,4 @@
 name: riemann
 
 files:
-- riemann/riemann-0.2.11.tar.bz2
+- riemann/riemann-0.2.12-SNAPSHOT.tar.bz2
